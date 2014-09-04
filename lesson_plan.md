@@ -95,27 +95,30 @@ var cell_width = 10
 ```
 
 Lets move the snake now using a timer which will trigger the paint function. It will refresh every 60ms but can be changed. This code goes right before the close of document.ready
+
+```js
   game_loop = setInterval(paint, 60);
+```
 
 The movement code for the snake to come now, as the first bit of code in the paint() function.
-    The logic is simple
-    Pop out the tail cell and place it infront of the head 
-    
-    ```js
-    var head_x_position = snake_array[0].x;
-    var head_y_position = snake_array[0].y;
-    ```
-    
-    These were the position of the head cell.
-    We will increment it to get the new head position
-    
-    ```js
-    head_x_position++;
+The logic is simple
+Pop out the tail cell and place it infront of the head 
 
-    var tail = snake_array.pop(); //pops out the last cell
-    tail.x = head_x_position;
-    snake_array.unshift(tail); //puts back the tail as the first cell
-    ```
+```js
+var head_x_position = snake_array[0].x;
+var head_y_position = snake_array[0].y;
+```
+
+These were the position of the head cell.
+We will increment it to get the new head position
+
+```js
+head_x_position++;
+
+var tail = snake_array.pop(); //pops out the last cell
+tail.x = head_x_position;
+snake_array.unshift(tail); //puts back the tail as the first cell
+```
 
 To avoid the snake trail we need to remove the code that paints the background and move it into the top of the paint() function so that we paint the BackGround on every frame
 
@@ -152,7 +155,7 @@ Lets add the keyboard controls now (below the code for painting the background)
     else if(pressed_key == "38") direction = "up";
     else if(pressed_key == "39") direction = "right";
     else if(pressed_key == "40") direction = "down";
-  })
+  });
 ```
 Demo by letting it go right for a sec then hitting left (this is the only directional demo that is poss right now)
 
@@ -245,25 +248,25 @@ function paint_cell(x, y)
 Now switch the background painting code for snake_cell code (at the bottom):
 
 ```js
-paint_cell(snake_cell.x, snake_cell.y);
+  paint_cell(snake_cell.x, snake_cell.y);
 ```
 
 Now paint the food below where you paint the snake (which now says paint_cell(snake_cell.x, snake_cell.y):
 
 ```js
-    paint_cell(food.x, food.y);
+  paint_cell(food.x, food.y);
 ```
 
 don't forget to add:
 
 ```js
-var food;
+  var food;
 ```
 
 And add
 
 ```js
-create_food();
+  create_food();
 ```
 
 below the create_snake(); function
@@ -271,11 +274,11 @@ below the create_snake(); function
 Now we can see the food particle!
 
 Lets write the code to make the snake eat the food (after game over clauses)
-    The logic is simple
-    If the new head position matches with that of the food,
-    Create a new head instead of moving the tail
+The logic is simple
+If the new head position matches with that of the food,
+Create a new head instead of moving the tail
     
-    ```js
+```js
     if(head_x_position == food.x && head_y_position == food.y)
     {
       var tail = {x: head_x_position, y: head_y_position};
@@ -284,7 +287,7 @@ Lets write the code to make the snake eat the food (after game over clauses)
     {
 
     }
-    ```
+```
 
 The 'else' situation refers to whenever you AREN'T eating the food now... So where it currently says:
 
@@ -360,11 +363,12 @@ Create a new head instead of moving the tail
     var score_text = "Score: " + score;
     context.fillText(score_text, 5, height-5)
   }
-```js
+```
 
 Next steps?
---> Use CSS to make page pretty
----> Improve the HTML on the site to explain what it is and how to play
---> Add social sharing
---> Upload this to the internet and share with friends!
+
+* Use CSS to make page pretty
+* Improve the HTML on the site to explain what it is and how to play
+* Add social sharing
+* Upload this to the internet and share with friends!
 
