@@ -17,7 +17,7 @@ Then add the jQuery link:
 ```html
 <!-- Jquery -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-```html
+```
 
 This will allow you to use jQuery - a javascript library
 
@@ -25,9 +25,9 @@ And link the JS and HTML files (add this to the html file)
 
 ```html
 <script src="snake.js"></script>
-```html
+```
 
-Now you set up the canvas (snake.js):
+Now you set up the canvas (in snake.js):
 
 ```js
 $(document).ready(function(){
@@ -36,7 +36,7 @@ $(document).ready(function(){
   var context = canvas.getContext("2d");
   var width = $("#canvas").width();
   var height = $("#canvas").height();
-  })
+});
 ```
 
 Add in the code that will paint the canvas (all inside the document.ready function unless otherwise stated):
@@ -86,7 +86,7 @@ Lets paint the snake now (still in the document.ready function)
     }
   }
   paint();
-```js
+```
 
 Create a cell width variable, set it to 10 and then replace the fillRect and strokeRect 10's with the cell_width
 
@@ -99,13 +99,16 @@ Lets move the snake now using a timer which will trigger the paint function. It 
 
 The movement code for the snake to come now, as the first bit of code in the paint() function.
     The logic is simple
-    Pop out the tail cell and place it infront of the head cell
+    Pop out the tail cell and place it infront of the head 
+    
     ```js
     var head_x_position = snake_array[0].x;
     var head_y_position = snake_array[0].y;
     ```
+    
     These were the position of the head cell.
     We will increment it to get the new head position
+    
     ```js
     head_x_position++;
 
@@ -115,6 +118,7 @@ The movement code for the snake to come now, as the first bit of code in the pai
     ```
 
 To avoid the snake trail we need to remove the code that paints the background and move it into the top of the paint() function so that we paint the BackGround on every frame
+
 ```js
   context.fillStyle = "white";
   context.fillRect(0, 0, width, height);
@@ -124,6 +128,7 @@ To avoid the snake trail we need to remove the code that paints the background a
 Lets add proper direction based movement now (replaces the head_x_position++ code that we currently have (line 85))
 
 Set the direction default (with other variables):
+
 ```js
 var direction = "right"; //default direction
 ```
@@ -152,10 +157,13 @@ Lets add the keyboard controls now (below the code for painting the background)
 Demo by letting it go right for a sec then hitting left (this is the only directional demo that is poss right now)
 
 Allow for up/down movement by replacing
+
 ```js
 tail.x = head_x_position;
 ```
+
 with
+
 ```js
 tail.x = head_x_position; tail.y = head_y_position;
 ```
